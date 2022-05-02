@@ -5,12 +5,12 @@ import React from 'react';
 // Div with description --> 'Let's do some trivia!'
 // Btn element that says 'Start quiz'
 
-export default function StartPage() {
+export default function StartPage(props) {
    return (
       <div className='startPage-main'>
          <h2 className='startPage-title'>Quizzical</h2>
          <div className='startPage-description'>Let's do some trivia! (Drinks not provided but def encouraged!)</div>
-         <div className='startPage-btn' backgroundcolor='red'>Start quiz</div>
+         <div className='startPage-btn' backgroundcolor='red' onClick={props.renderQuestions}>Start quiz</div>
       </div>
    )
 }

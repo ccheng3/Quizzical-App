@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import Question from './Question';
 import StartPage from './StartPage';
 import TriviaPage from './TriviaPage';
+import { nanoid } from 'nanoid';
 
 // https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple
 
@@ -17,21 +18,24 @@ export default function App() {
       async function getQuestions() {
          const res = await fetch('https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple');
          const data = await res.json();
-         setTriviaQuestions(data.results);
+         const newArray = data.results.map(question => {
+            return { ...question, key: nanoid() };
+         })
+         setTriviaQuestions(newArray);
       };
       getQuestions();
    }, []);
 
    function printQuestions() {
       triviaQuestions.forEach(question => {
-         console.log(question.question);
+         console.log(question);
       })
    }
    printQuestions();
 
    function renderQuestions() {
       return triviaQuestions.map(question => {
-         const validAnswerChoices = [question.correct_answer, ...incorrect_answers];
+         const validAnswerChoices = [question.correct_answer, ...question.incorrect_answers];
          return <Question choices={validAnswerChoices} />;
       })
    }
@@ -40,6 +44,7 @@ export default function App() {
    return (
       <section>
          <StartPage renderQuestions={renderQuestions} />
+         {renderQuestions()}
       </section>
    );
 }
