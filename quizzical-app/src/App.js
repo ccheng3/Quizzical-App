@@ -1,4 +1,6 @@
 import React from 'react';
+import { render } from 'react-dom';
+import Question from './Question';
 import StartPage from './StartPage';
 import TriviaPage from './TriviaPage';
 
@@ -7,6 +9,8 @@ import TriviaPage from './TriviaPage';
 export default function App() {
    // save the trivia questions in state to be changed upon new game
    const [triviaQuestions, setTriviaQuestions] = React.useState([]);
+   // save the user's answers in state 
+   const [userAnswers, setUserAnswers] = React.useState([]);
 
    // fetch the trivia questions data once during each game
    React.useEffect(() => {
@@ -25,10 +29,17 @@ export default function App() {
    }
    printQuestions();
 
+   function renderQuestions() {
+      return triviaQuestions.map(question => {
+         const validAnswerChoices = [question.correct_answer, ...incorrect_answers];
+         return <Question choices={validAnswerChoices} />;
+      })
+   }
+
 
    return (
       <section>
-         <StartPage />
+         <StartPage renderQuestions={renderQuestions} />
       </section>
    );
 }
