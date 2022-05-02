@@ -34,7 +34,6 @@ export default function App() {
          console.log(question);
       })
    }
-   printQuestions();
 
    function handleIsStartNewQuiz() {
       setIsStartNewQuiz(prevVal => !prevVal);
