@@ -4,12 +4,21 @@ import { nanoid } from 'nanoid';
 import './Question.css';
 
 export default function Question(props) {
+   const [isAnswerChoiceClicked, setIsAnswerChoiceClicked] = React.useState(false);
+
+   function handleClick() {
+      setIsAnswerChoiceClicked(prevIsAnswerChoiceClicked => !prevIsAnswerChoiceClicked);
+   }
+
    // an array of AnswerChoice components
    // console.log(props.choices);
    const choicesArray = props.choices.map(choice => {
-      return <AnswerChoice choice={choice} key={nanoid()} />
+      return <AnswerChoice
+         choice={choice}
+         key={nanoid()}
+         handleClick={handleClick}
+         isAnswerChoiceClicked={isAnswerChoiceClicked} />
    })
-   console.log(choicesArray);
 
    const questionStringArray = props.question.split(/\&.+?\;/g);
 
@@ -17,7 +26,7 @@ export default function Question(props) {
       <div className='questions-panel'>
          <h2 className='question-h2'>{questionStringArray}</h2>
          {choicesArray}
-         <hr></hr>
+         <hr className='question-hr'></hr>
       </div>
    )
 }

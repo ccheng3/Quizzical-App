@@ -10,7 +10,7 @@ export default function StartPage(props) {
       <div className='startPage-main'>
          <h2 className='startPage-title'>Quizzical</h2>
          <div className='startPage-description'>Let's do some trivia! (Drinks not provided but def encouraged!)</div>
-         <div className='startPage-btn' backgroundcolor='red' onClick={props.handleIsStartNewQuiz}>Start quiz</div>
+         <div className='startPage-btn' onClick={props.handleIsStartNewQuiz}>Start quiz</div>
       </div>
    )
 }

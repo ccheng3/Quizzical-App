@@ -3,11 +3,12 @@
    font-family: 'Karla';
    font-style: normal;
    font-weight: 700;
-   margin-bottom: 12px;
+   margin-bottom: 15px;
 }
 
 .questions-panel {
-   padding: auto 75px;
+   padding: 0px 75px;
+   display: block;
 }
 
 .question-hr {

@@ -7,9 +7,10 @@ export default function AnswerChoice(props) {
    // so figured to completely remove all entities for time being while 
    // focusing on implementing core app logic. Will return afterwards...
    // Documented well by Shripadk's 2014 guide
-   https://shripadk.github.io/react/docs/jsx-gotchas.html
+   // https://shripadk.github.io/react/docs/jsx-gotchas.html
+
    return (
-      <span className='answerchoice-btn'>
+      <span className={props.isAnswerChoiceClicked ? `answerchoice-btn-clicked` : `answerchoice-btn-unclicked`} onClick={props.handleClick}>
          {props.choice.split(/\&.+?\;/g)}
       </span>
    )
