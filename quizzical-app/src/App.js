@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import Question from './Question';
 import StartPage from './StartPage';
-import TriviaPage from './TriviaPage';
 import { nanoid } from 'nanoid';
 
 // https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple

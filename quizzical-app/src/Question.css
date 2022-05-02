@@ -3,5 +3,14 @@
    font-family: 'Karla';
    font-style: normal;
    font-weight: 700;
-   margin-bottom: 10px;
+   margin-bottom: 12px;
+}
+
+.questions-panel {
+   padding: auto 75px;
+}
+
+.question-hr {
+   margin-top: 15px;
+   margin-bottom: 15px;
 }

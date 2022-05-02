@@ -14,9 +14,10 @@ export default function Question(props) {
    const questionStringArray = props.question.split(/\&.+?\;/g);
 
    return (
-      <div>
+      <div className='questions-panel'>
          <h2 className='question-h2'>{questionStringArray}</h2>
          {choicesArray}
+         <hr></hr>
       </div>
    )
 }

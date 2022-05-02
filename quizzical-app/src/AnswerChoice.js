@@ -1,4 +1,5 @@
 import React from 'react';
+import './AnswerChoice.css'
 
 export default function AnswerChoice(props) {
    // the regex removes the HTML entities, spent for too long trying to
@@ -8,8 +9,8 @@ export default function AnswerChoice(props) {
    // Documented well by Shripadk's 2014 guide
    https://shripadk.github.io/react/docs/jsx-gotchas.html
    return (
-      <div className='answerchoice-btn'>
+      <span className='answerchoice-btn'>
          {props.choice.split(/\&.+?\;/g)}
-      </div>
+      </span>
    )
 }
