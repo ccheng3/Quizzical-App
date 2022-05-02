@@ -1,5 +1,32 @@
 body {
    background-color: #F5F7FB;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+   background: url('./images/blob_blue.svg') left bottom no-repeat,
+      url('./images/blob_yellow.svg') right top no-repeat;
+}
+
+.startPage-main {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+}
+
+.startPage-title,
+.startPage-description {
+   font-family: 'karla', sans-serif;
+   color: #293264;
+}
+
+.startPage-title {
+   font-size: 40px;
+}
+
+.startPage-description {
+   margin-bottom: 40px;
 }
 
 .startPage-btn {
@@ -7,7 +34,7 @@ body {
    max-width: 150px;
    border-radius: 15px;
    color: #F5F7FB;
-   padding: 20px 40px;
+   padding: 20px 60px;
    display: flex;
    justify-content: center;
    align-items: center;
