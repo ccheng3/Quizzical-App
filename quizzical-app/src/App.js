@@ -12,6 +12,7 @@ export default function App() {
    const [triviaQuestions, setTriviaQuestions] = React.useState([]);
    // save the user's answers in state 
    const [userAnswers, setUserAnswers] = React.useState([]);
+   const [isStartNewQuiz, setIsStartNewQuiz] = React.useState(false);
 
    // fetch the trivia questions data once during each game
    React.useEffect(() => {
@@ -35,6 +36,10 @@ export default function App() {
    }
    printQuestions();
 
+   function handleIsStartNewQuiz() {
+      setIsStartNewQuiz(prevVal => !prevVal);
+   }
+
    function renderQuestions() {
       return triviaQuestions.map(question => {
          const validAnswerChoices = [question.correct_answer, ...question.incorrect_answers];
@@ -45,8 +50,7 @@ export default function App() {
 
    return (
       <section>
-         <StartPage renderQuestions={renderQuestions} />
-         {renderQuestions()}
+         {isStartNewQuiz ? renderQuestions() : <StartPage handleIsStartNewQuiz={() => { handleIsStartNewQuiz(isStartNewQuiz) }} />}
       </section>
    );
 }

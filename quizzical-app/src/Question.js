@@ -1,6 +1,7 @@
 import React from 'react';
 import AnswerChoice from './AnswerChoice';
 import { nanoid } from 'nanoid';
+import './Question.css';
 
 export default function Question(props) {
    // an array of AnswerChoice components
@@ -14,7 +15,6 @@ export default function Question(props) {
    return (
       <div>
          <h2 className='question-h2'>{questionStringArray}</h2>
-         <div>{['First ', <span>&middot;</span>, ' Second']}</div>
          {choices}
       </div>
    )
