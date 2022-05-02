@@ -1,0 +1,17 @@
+body {
+   background-color: #F5F7FB;
+}
+
+.startPage-btn {
+   background-color: #4D5B9E;
+   max-width: 150px;
+   border-radius: 15px;
+   color: #F5F7FB;
+   padding: 20px 40px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 500;
+}
