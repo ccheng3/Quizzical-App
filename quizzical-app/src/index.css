@@ -42,3 +42,9 @@ body {
    font-style: normal;
    font-weight: 500;
 }
+
+/* produces a 'sink' effect when the button is clicked */
+/* recently been trying to learn more about these small but huge CSS UI tricks */
+.startPage-btn:active {
+   box-shadow: inset 0px 0px 10px black;
+}
