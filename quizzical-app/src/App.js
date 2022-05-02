@@ -18,6 +18,8 @@ export default function App() {
       async function getQuestions() {
          const res = await fetch('https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple');
          const data = await res.json();
+         // adding a unique key to each question to help React
+         // keep track of each component when rendering (re-hash on React docs)
          const newArray = data.results.map(question => {
             return { ...question, key: nanoid() };
          })
@@ -36,7 +38,7 @@ export default function App() {
    function renderQuestions() {
       return triviaQuestions.map(question => {
          const validAnswerChoices = [question.correct_answer, ...question.incorrect_answers];
-         return <Question choices={validAnswerChoices} />;
+         return <Question question={question.question} choices={validAnswerChoices} key={question.key} />;
       })
    }
 
