@@ -9,8 +9,8 @@ import { nanoid } from 'nanoid';
 export default function App() {
    // save the trivia questions in state to be changed upon new game
    const [triviaQuestions, setTriviaQuestions] = React.useState([]);
-   // save the user's answers in state 
-   const [userAnswers, setUserAnswers] = React.useState([]);
+   // this hook triggers the change from start page to questions panel (b/c when true,
+   // you are starting a new quiz round)
    const [isStartNewQuiz, setIsStartNewQuiz] = React.useState(false);
 
    // fetch the trivia questions data once during each game
@@ -21,7 +21,8 @@ export default function App() {
          // adding a unique key to each question to help React
          // keep track of each component when rendering (re-hash on React docs)
          const newArray = data.results.map(question => {
-            return { ...question, key: nanoid() };
+            const validAnswerChoices = [question.correct_answer, ...question.incorrect_answers];
+            return { ...question, key: nanoid(), };
          })
          setTriviaQuestions(newArray);
       };
@@ -41,7 +42,10 @@ export default function App() {
    function renderQuestions() {
       return triviaQuestions.map(question => {
          const validAnswerChoices = [question.correct_answer, ...question.incorrect_answers];
-         return <Question question={question.question} choices={validAnswerChoices} key={question.key} />;
+         const validAnswersArray = validAnswerChoices.map(choice => {
+            return { choice: choice, isClicked: false, id: nanoid() };
+         })
+         return <Question question={question.question} answers={validAnswersArray} key={question.key} />;
       })
    }
 

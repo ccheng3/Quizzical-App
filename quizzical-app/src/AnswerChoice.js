@@ -10,7 +10,7 @@ export default function AnswerChoice(props) {
    // https://shripadk.github.io/react/docs/jsx-gotchas.html
 
    return (
-      <span className={props.isAnswerChoiceClicked ? `answerchoice-btn-clicked` : `answerchoice-btn-unclicked`} onClick={props.handleClick}>
+      <span className={props.isClicked ? `answerchoice-btn-clicked` : `answerchoice-btn-unclicked`} onClick={() => props.handleClick(props.id)}>
          {props.choice.split(/\&.+?\;/g)}
       </span>
    )

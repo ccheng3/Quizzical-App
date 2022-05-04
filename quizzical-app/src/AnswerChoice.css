@@ -1,4 +1,5 @@
-.answerchoice-btn-unclicked {
+.answerchoice-btn-unclicked,
+.answerchoice-btn-clicked {
    border: 1px solid #4D5B9E;
    border-radius: 8px;
    font-family: 'Inter';
@@ -12,13 +13,4 @@
 
 .answerchoice-btn-clicked {
    background-color: #D6DBF5;
-   color: #293264;
-   border: 1px solid #4D5B9E;
-   border-radius: 8px;
-   font-family: 'Inter';
-   font-style: normal;
-   font-weight: 500;
-   font-size: 14px;
-   margin-right: 13px;
-   padding: 5px 20px;
 }
