@@ -13,18 +13,32 @@ export default function App() {
    // you are starting a new quiz round)
    const [isStartNewQuiz, setIsStartNewQuiz] = React.useState(false);
 
+   const [answersArray, setAnswersArray] = React.useState([]);
+
    // fetch the trivia questions data once during each game
    React.useEffect(() => {
       async function getQuestions() {
          const res = await fetch('https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple');
          const data = await res.json();
+         setTriviaQuestions(data.results);
          // adding a unique key to each question to help React
          // keep track of each component when rendering (re-hash on React docs)
          const newArray = data.results.map(question => {
             const validAnswerChoices = [question.correct_answer, ...question.incorrect_answers];
-            return { ...question, key: nanoid(), };
+            const choicesArray = validAnswerChoices.map(choice => {
+               return {
+                  choice: choice,
+                  id: nanoid(),
+                  isClicked: false,
+               }
+            })
+            return {
+               question: question.question,
+               key: nanoid(),
+               answers: choicesArray
+            };
          })
-         setTriviaQuestions(newArray);
+         setAnswersArray(newArray);
       };
       getQuestions();
    }, []);
@@ -40,14 +54,14 @@ export default function App() {
    }
 
    function renderQuestions() {
-      return triviaQuestions.map(question => {
-         const validAnswerChoices = [question.correct_answer, ...question.incorrect_answers];
-         const validAnswersArray = validAnswerChoices.map(choice => {
-            return { choice: choice, isClicked: false, id: nanoid() };
-         })
-         return <Question question={question.question} answers={validAnswersArray} key={question.key} />;
+      return answersArray.map(question => {
+         return <Question question={question.question}
+            answers={question.answers}
+            key={question.key} />;
       })
    }
+
+   React.useEffect(, [answersArray])
 
 
    return (

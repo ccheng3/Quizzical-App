@@ -12,7 +12,6 @@ export default function Question(props) {
    const [validAnswers, setValidAnswers] = React.useState(props.answers)
 
    function handleClick(id) {
-      // setIsAnswerChoiceClicked(prevIsAnswerChoiceClicked => !prevIsAnswerChoiceClicked);
       console.log(`This answer choice's ID is: ${id}`);
       setValidAnswers(prevValidAnswers => {
          return prevValidAnswers.map(validAnswer => {
@@ -22,7 +21,6 @@ export default function Question(props) {
    }
 
    // an array of AnswerChoice components
-   // console.log(props.choices);
    const choicesArray = validAnswers.map(answer => {
       return <AnswerChoice
          choice={answer.choice}
