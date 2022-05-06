@@ -1,6 +1,5 @@
 import React from 'react';
 import AnswerChoice from './AnswerChoice';
-import { nanoid } from 'nanoid';
 import './Question.css';
 
 export default function Question(props) {
@@ -9,24 +8,30 @@ export default function Question(props) {
    // const validAnswersArray = props.choices.map(choice => {
    //    return { choice: choice, isClicked: false, id: nanoid() };
    // })
-   const [validAnswers, setValidAnswers] = React.useState(props.answers)
+   const [userChoices, setUserChoices] = React.useState(
+      props.answers.map((choice, index) => {
+         // console.log(choice)
+         return { choice: choice, isClicked: false, id: props.answerKeys[index] };
+      })
+   );
 
    function handleClick(id) {
-      console.log(`This answer choice's ID is: ${id}`);
-      setValidAnswers(prevValidAnswers => {
-         return prevValidAnswers.map(validAnswer => {
-            return validAnswer.id === id ? { ...validAnswer, isClicked: !validAnswer.isClicked } : validAnswer
+      // console.log(`This answer choice's ID is: ${id}`);
+      setUserChoices(prevuserChoices => {
+         return prevuserChoices.map(choice => {
+            return choice.id === id ? { ...choice, isClicked: !choice.isClicked } : choice
          })
       });
    }
 
    // an array of AnswerChoice components
-   const choicesArray = validAnswers.map(answer => {
+   const choicesArray = userChoices.map(choice => {
+      // console.log('choicesArray is rendered.');
       return <AnswerChoice
-         choice={answer.choice}
-         key={answer.id}
-         id={answer.id}
-         isClicked={answer.isClicked}
+         choice={choice.choice}
+         key={choice.id}
+         id={choice.id}
+         isClicked={choice.isClicked}
          handleClick={handleClick} />
    })
 

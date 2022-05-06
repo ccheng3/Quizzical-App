@@ -23,19 +23,27 @@ export default function App() {
          setTriviaQuestions(data.results);
          // adding a unique key to each question to help React
          // keep track of each component when rendering (re-hash on React docs)
+         // const newArray = data.results.map(question => {
+         //    const validAnswerChoices = [question.correct_answer, ...question.incorrect_answers];
+         //    const choicesArray = validAnswerChoices.map(choice => {
+         //       return {
+         //          choice: choice,
+         //          id: nanoid(),
+         //          isClicked: false,
+         //       }
+         //    })
+         //    return {
+         //       question: question.question,
+         //       key: nanoid(),
+         //       answers: choicesArray
+         //    };
+         // })
          const newArray = data.results.map(question => {
-            const validAnswerChoices = [question.correct_answer, ...question.incorrect_answers];
-            const choicesArray = validAnswerChoices.map(choice => {
-               return {
-                  choice: choice,
-                  id: nanoid(),
-                  isClicked: false,
-               }
-            })
             return {
                question: question.question,
                key: nanoid(),
-               answers: choicesArray
+               answers: [question.correct_answer, ...question.incorrect_answers],
+               answerKeys: [nanoid(), nanoid(), nanoid(), nanoid()]
             };
          })
          setAnswersArray(newArray);
@@ -53,15 +61,34 @@ export default function App() {
       setIsStartNewQuiz(prevVal => !prevVal);
    }
 
+   // function handleClick(id) {
+   //    console.log(`This answer choice's ID is: ${id}`);
+   //    setAnswersArray(answersArray.map(question => {
+   //       const answers = question.answers;
+   //       const newChoicesArray = answers.map(choice => {
+   //          // return choice.id === id ? { ...choice, isClicked: !choice.isClicked } : choice;
+   //          // return choice.id === id ? { fuck: true } : choice;
+   //       })
+   //       return answers.id === id ? { ...question, answers: newChoicesArray } : question;
+   //    }))
+   //    console.log(answersArray);
+   // }
+
    function renderQuestions() {
+      // console.log('renderQuestions() is called')
       return answersArray.map(question => {
          return <Question question={question.question}
+            answerKeys={question.answerKeys}
             answers={question.answers}
             key={question.key} />;
       })
    }
 
-   React.useEffect(, [answersArray])
+   // React.useEffect(() => {
+   //    // Make sure that user can only select one answer at any given time. 
+   //    // User is not allowed to select multiple answers and pray that one of them is the correct answer. 
+   //    console.log("The answersArray encountered a state change.");
+   // }, [answersArray])
 
 
    return (
