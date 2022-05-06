@@ -12,6 +12,7 @@ export default function App() {
    // this hook triggers the change from start page to questions panel (b/c when true,
    // you are starting a new quiz round)
    const [isStartNewQuiz, setIsStartNewQuiz] = React.useState(false);
+   const [isCheckAnswers, setIsCheckAnswers] = React.useState(false);
 
    const [answersArray, setAnswersArray] = React.useState([]);
 
@@ -76,12 +77,14 @@ export default function App() {
 
    function renderQuestions() {
       // console.log('renderQuestions() is called')
-      return answersArray.map(question => {
-         return <Question question={question.question}
-            answerKeys={question.answerKeys}
-            answers={question.answers}
-            key={question.key} />;
-      })
+      return (
+         answersArray.map(question => {
+            return <Question question={question.question}
+               answerKeys={question.answerKeys}
+               answers={question.answers}
+               key={question.key} />;
+         })
+      )
    }
 
    // React.useEffect(() => {
@@ -90,10 +93,22 @@ export default function App() {
    //    console.log("The answersArray encountered a state change.");
    // }, [answersArray])
 
+   function setBtnText() {
+      if (!isStartNewQuiz && !isCheckAnswers) {
+         return 'Start Quiz'
+      }
+      else if (isStartNewQuiz && !isCheckAnswers) {
+         return 'Check answers'
+      }
+      else if (isStartNewQuiz && isCheckAnswers) {
+         return 'Play again'
+      }
+   }
 
    return (
       <section>
          {isStartNewQuiz ? renderQuestions() : <StartPage handleIsStartNewQuiz={() => { handleIsStartNewQuiz(isStartNewQuiz) }} />}
+         <div className='startPage-btn' onClick={handleIsStartNewQuiz}>{setBtnText}</div>
       </section>
    );
 }

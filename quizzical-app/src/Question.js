@@ -3,11 +3,6 @@ import AnswerChoice from './AnswerChoice';
 import './Question.css';
 
 export default function Question(props) {
-   // const [isAnswerChoiceClicked, setIsAnswerChoiceClicked] = React.useState(false);
-
-   // const validAnswersArray = props.choices.map(choice => {
-   //    return { choice: choice, isClicked: false, id: nanoid() };
-   // })
    const [userChoices, setUserChoices] = React.useState(
       props.answers.map((choice, index) => {
          // console.log(choice)
@@ -19,7 +14,10 @@ export default function Question(props) {
       // console.log(`This answer choice's ID is: ${id}`);
       setUserChoices(prevuserChoices => {
          return prevuserChoices.map(choice => {
-            return choice.id === id ? { ...choice, isClicked: !choice.isClicked } : choice
+            // if that choice id is equal to the id that user clicked, then toggle that AnswerChoice
+            // otherwise set that AnswerChoice's isClicked to false b/c user can only choose one answer
+            // for each question (can't choose multiple answers and hope one of them is correct) 
+            return choice.id === id ? { ...choice, isClicked: !choice.isClicked } : { ...choice, isClicked: false }
          })
       });
    }
