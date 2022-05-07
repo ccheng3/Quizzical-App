@@ -1,7 +1,7 @@
 import React from 'react';
-import { render } from 'react-dom';
 import Question from './Question';
 import StartPage from './StartPage';
+import QuizPage from './QuizPage';
 import { nanoid } from 'nanoid';
 
 // https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple
@@ -107,8 +107,8 @@ export default function App() {
 
    return (
       <section>
-         {isStartNewQuiz ? renderQuestions() : <StartPage handleIsStartNewQuiz={() => { handleIsStartNewQuiz(isStartNewQuiz) }} />}
-         <div className='startPage-btn' onClick={handleIsStartNewQuiz}>{setBtnText}</div>
+         {isStartNewQuiz ? <QuizPage renderQuestions={renderQuestions} /> : <StartPage handleIsStartNewQuiz={() => { handleIsStartNewQuiz(isStartNewQuiz) }} />}
+         {/* <div className='startPage-btn' onClick={() => handleIsStartNewQuiz}></div> */}
       </section>
    );
 }

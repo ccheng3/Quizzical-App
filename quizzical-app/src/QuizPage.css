@@ -1,0 +1,19 @@
+.quizPage-btn {
+   padding: 10px 20px;
+   background-color: #4D5B9E;
+   max-width: 150px;
+   border-radius: 15px;
+   color: #F5F7FB;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 500;
+   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+   margin: auto;
+}
+
+.quizPage-btn:active {
+   box-shadow: inset 0px 0px 10px black;
+}
